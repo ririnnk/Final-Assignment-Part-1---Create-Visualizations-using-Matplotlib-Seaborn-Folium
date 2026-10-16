@@ -1,1 +1,196 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as seaborn
+import folium
 
+%matplotlib inline
+
+import pandas as pd
+url = 'https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv'
+df = pd.read_csv(url)
+print('Dataset loaded successfully with shape:', df.shape)
+df.head()
+
+# Define subsets for easier visualization in subsequent cells
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets 'df_rec' and 'df_non_rec' created successfully!")
+
+# Define subsets for easier visualization in subsequent cells
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets 'df_rec' and 'df_non_rec' created successfully!")
+
+# Menentukan subset data untuk masa Resesi dan Non-Resesi
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets 'df_rec' and 'df_non_rec' created successfully!")
+
+# Define subsets for easier visualization in subsequent cells
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets 'df_rec' and 'df_non_rec' created successfully!")
+
+# Menentukan subset data untuk masa Resesi dan Non-Resesi
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets 'df_rec' and 'df_non_rec' created successfully!")
+
+# Menentukan subset data untuk masa Resesi dan Non-Resesi
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets created successfully!")
+
+# Define subsets for easier visualization in subsequent cells
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets created successfully!")
+print(f"Recession data points: {len(df_rec)}")
+print(f"Non-recession data points: {len(df_non_rec)}")
+
+# Define subsets for easier visualization in subsequent cells
+df_rec = df[df['Recession'] == 1]
+df_non_rec = df[df['Recession'] == 0]
+print("Subsets created successfully!")
+print(f"Recession data points: {len(df_rec)}")
+print(f"Non-recession data points: {len(df_non_rec)}")
+
+# Check for missing values in the dataset
+missing_values = df.isnull().sum()
+print("Number of missing values per column:")
+display(missing_values[missing_values > 0] if missing_values.sum() > 0 else "No missing values found!")
+
+# Load the historical automobile sales dataset
+import pandas as pd
+
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv"
+df = pd.read_csv(url)
+print("Dataset loaded successfully with shape:", df.shape)
+df.head()
+
+# Load the historical automobile sales dataset
+import pandas as pd
+
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv"
+df = pd.read_csv(url)
+print("Data loaded successfully! Shape:", df.shape)
+df.head()
+
+# Load the historical automobile sales dataset
+import pandas as pd
+
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv"
+df = pd.read_csv(url)
+print("Data loaded successfully! Shape:", df.shape)
+df.head()
+
+# Load the historical automobile sales dataset
+import pandas as pd
+
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv"
+df = pd.read_csv(url)
+print("Data loaded successfully! Shape:", df.shape)
+df.head()
+
+# Silakan sesuaikan URL atau path file dengan data Anda
+# Please adjust the URL or file path with your actual dataset
+url = "https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-DV0101EN-SkillsNetwork/Data%20Files/historical_automobile_sales.csv"
+df = pd.read_csv(url)
+print("Data loaded successfully! Here is a preview:")
+df.head()
+
+# Mengelompokkan data berdasarkan tahun dan menghitung total penjualan
+df_line = df.groupby('Year')['Automobile_Sales'].sum().reset_index()
+
+plt.figure(figsize=(10, 6))
+plt.plot(df_line['Year'], df_line['Automobile_Sales'], marker='o', color='b')
+plt.title('Fluuktuasi Penjualan Mobil dari Tahun ke Tahun')
+plt.xlabel('Tahun')
+plt.ylabel('Total Penjualan Mobil')
+plt.grid(True)
+plt.show()
+
+# Filter data untuk periode non-resesi (misal: kolom 'Recession' bernilai 0)
+df_non_rec = df[df['Recession'] == 0]
+
+# Grouping data by year to get annual averages for cleaner visualization
+df_non_rec_grouped = df_non_rec.groupby('Year')[['Advertising_Expenditure', 'Automobile_Sales']].mean().reset_index()
+
+plt.figure(figsize=(10, 6))
+plt.plot(df_non_rec_grouped['Year'], df_non_rec_grouped['Advertising_Expenditure'], label='Pengeluaran Iklan', color='orange', marker='o')
+plt.plot(df_non_rec_grouped['Year'], df_non_rec_grouped['Automobile_Sales'], label='Penjualan Mobil', color='blue', marker='s')
+plt.title('Tren Rata-rata Pengeluaran Iklan vs Penjualan (Periode Non-Resesi)')
+plt.xlabel('Tahun')
+plt.ylabel('Nilai Rata-rata')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+df_bar = df.groupby(['Recession', 'Vehicle_Type'])['Automobile_Sales'].mean().unstack()
+
+df_bar.plot(kind='bar', figsize=(10, 6))
+plt.title('Perbandingan Penjualan per Jenis Kendaraan: Resesi vs Non-Resesi')
+plt.xlabel('Periode Resesi (0 = Tidak, 1 = Ya)')
+plt.ylabel('Rata-rata Penjualan')
+plt.xticks(rotation=0)
+plt.legend(title='Jenis Kendaraan')
+plt.show()
+
+fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+
+# Data Resesi
+df_rec = df[df['Recession'] == 1]
+axes[0].plot(df_rec['Year'], df_rec['GDP'], color='red')
+axes[0].set_title('Variasi GDP Selama Resesi')
+axes[0].set_xlabel('Tahun')
+axes[0].set_ylabel('GDP')
+
+# Data Non-Resesi
+axes[1].plot(df_non_rec['Year'], df_non_rec['GDP'], color='green')
+axes[1].set_title('Variasi GDP Selama Non-Resesi')
+axes[1].set_xlabel('Tahun')
+axes[1].set_ylabel('GDP')
+
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Month'], df['Automobile_Sales'], 
+            s=df['Seasonality_Weight']*100, alpha=0.5, c='purple')
+plt.title('Dampak Musiman Terhadap Penjualan Mobil')
+plt.xlabel('Bulan')
+plt.ylabel('Penjualan Mobil')
+plt.grid(True)
+plt.show()
+
+plt.figure(figsize=(10, 6))
+seaborn.scatterplot(data=df_rec, x='Price', y='Automobile_Sales', hue='Vehicle_Type')
+plt.title('Korelasi Harga Kendaraan dan Penjualan (Masa Resesi)')
+plt.xlabel('Harga Rata-Rata Kendaraan')
+plt.ylabel('Volume Penjualan')
+plt.show()
+
+ad_exp = df.groupby('Recession')['Advertising_Expenditure'].sum()
+
+plt.figure(figsize=(6, 6))
+plt.pie(ad_exp, labels=['Non-Resesi', 'Resesi'], autopct='%1.1f%%', startangle=90, colors=['skyblue', 'salmon'])
+plt.title('Porsi Pengeluaran Iklan: Resesi vs Non-Resesi')
+plt.show()
+
+ad_vehicle = df_rec.groupby('Vehicle_Type')['Advertising_Expenditure'].sum()
+
+plt.figure(figsize=(7, 7))
+plt.pie(ad_vehicle, labels=ad_vehicle.index, autopct='%1.1f%%', startangle=140)
+plt.title('Pengeluaran Iklan per Jenis Kendaraan (Masa Resesi)')
+plt.show()
+
+plt.figure(figsize=(10, 6))
+# Corrected 'Unemployment_Rate' to the actual lowercase column 'unemployment_rate'
+seaborn.lineplot(data=df_rec, x='unemployment_rate', y='Automobile_Sales', hue='Vehicle_Type', marker='o')
+plt.title('Pengaruh Tingkat Pengangguran Terhadap Penjualan per Jenis Kendaraan (Resesi)')
+plt.xlabel('Tingkat Pengangguran')
+plt.ylabel('Penjualan Mobil')
+plt.legend(title='Jenis Kendaraan')
+plt.grid(True)
+plt.show()
